@@ -1,0 +1,14 @@
+AddDefaultCharset utf-8
+
+<IfModule mod_headers.c>
+    Header set Access-Control-Allow-Origin "*"
+</IfModule>
+
+DirectoryIndex index.php
+
+RewriteEngine On
+
+RewriteRule ^data\/(.*)$  web/data/$1 [L,QSA]
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule .*  web/index.php [L,QSA]
