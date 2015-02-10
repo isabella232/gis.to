@@ -45,7 +45,6 @@ class User
 	function setCookie($id, $password)
 	{
 		$cookie_password_hash = $this->getHash(Core::$config['user']['cookie_password_salt'], $password);
-		
 		if(version_compare(PHP_VERSION, '5.2.0', '>=')) {
 			setcookie(Core::$config['user']['cookie_name'], $id.'_'.$cookie_password_hash, Core::$time['current_time'] + Core::$config['user']['cookie_expire'],
 					Core::$config['user']['cookie_path'], Core::$config['user']['cookie_domain'], Core::$config['user']['cookie_secure'], true);
@@ -76,13 +75,13 @@ class User
 
         $info = Core::$sql->row('id, password', DB.'user',
         		'id<>'.Core::$sql->i(User::ANONIMOUS).' and is_disabled=0 and email='.Core::$sql->s($email));
-        
+
         $password_hash = $this->getHash(Core::$config['user']['password_salt'], $password);
         
         if($info['password'] != $password_hash) {
         	return false;
         }
-        
+
 		$this->setCookie($info['id'], $info['password']);
 		
         return $info['id'];

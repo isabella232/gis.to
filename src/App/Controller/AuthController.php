@@ -23,7 +23,16 @@ class AuthController
 				}
 
 				if (! count($errors)) {
-					go(core::$config['http_home'] . '/u' . $id);
+					// go(core::$config['http_home'] . '/u' . $id);
+
+					if (isset($_SESSION['authReturnUrl'])) {
+						$url = $_SESSION['authReturnUrl'];
+						unset($_SESSION['authReturnUrl']);
+					} else {
+						$url = core::$config['http_home'];
+					}
+
+					go($url);
 				}
 			// }
 			// else
@@ -127,7 +136,15 @@ class AuthController
 			        }
                     */
 
-					go(core::$config['http_home'] . '/u' . $id);
+					// go(core::$config['http_home'] . '/u' . $id);
+					if (isset($_SESSION['authReturnUrl'])) {
+						$url = $_SESSION['authReturnUrl'];
+						unset($_SESSION['authReturnUrl']);
+					} else {
+						$url = core::$config['http_home'];
+					}
+
+					go($url);
 				}
 
 			// }
@@ -395,5 +412,64 @@ C уважением,
 		$html .= '</div>';
 
         return include(dirname(__FILE__) . '/../View/Common.php');
+	}
+
+	function auth()
+	{
+		$html = '';
+
+		$html .= '<div class="container">';
+
+		$html .= '<h1>' . s('Войдите или зарегистрируйтейсь') . '</h1>';
+
+		$html .= '<p>' . s('Для продолжения оформления заказа необходимо войти или зарегистрироваться') . '</p>';
+
+		$html .= '<div class="row">';
+
+		$form = new Form('login', core::$config['http_home'] . '/login', 'post');
+
+		$html .= '<div class="col-md-6">';
+
+		$html .= '<h3>' . s('Вход') . '</h3>';
+
+		$html .= '<div class="well">'
+		    . $form->start()
+			. $form->addVariable('is_posted', 1)
+			. $form->addString('email', s('E-mail'), '', array('class' => 'span3'))
+			. $form->addPassword('password', s('Пароль'), '', array('class' => 'span3'))
+			// . $form->add_captcha('Код на картинке', array('style' => 'width:300px;'))
+			. $form->submit(s('Войти'))
+			. '</div>';
+		$html .= '<script> $(document).ready(function() { $("#login_email").focus(); }); </script>';
+
+		$html .= '</div>';
+
+		$html .= '<div class="col-md-6">';
+
+		$html .= '<h3>' . s('Регистрация') . '</h3>';
+
+		$form = new Form('register', core::$config['http_home'] . '/register', 'post');
+
+		$html .= '<div class="well">'
+			. $form->start()
+			. $form->addVariable('is_posted', 1)
+			. $form->addString('email', s('E-mail (будет использоваться для входа)'), '', array('is_required' => true))
+			. $form->addPassword('password', s('Пароль'), '', array('is_required' => true))
+			. $form->addPassword('password2', s('Подтверждение пароля'), '', array('is_required' => true))
+			. $form->addSelect('language_id', s('Язык'), (core::$config['current_language'] == 'ru' ? 1 : (core::$config['current_language'] == 'en' ? 2 : 0)), array('is_required' => true, 'data' => array(
+			    	array('id' => 0, 'title' => '—'),
+			    	array('id' => 1, 'title' => s('Русский')),
+			    	array('id' => 2, 'title' => s('English')),
+			    )))
+			// . $form->add_captcha('Код на картинке', array('style' => 'width:300px;'))
+			// . '<p>' . s('Вы будете подписаны на рассылку новости конференции о чем вам придет уведомление.') . '</p>'
+			. $form->submit(s('Зарегистрироваться'))
+			. '</div>';
+
+		$html .= '</div>';
+
+		$html .= '</div></div>';
+
+		return include(dirname(__FILE__) . '/../View/Common.php');
 	}
 }

@@ -19,20 +19,33 @@ $config['order_notification_emails'] = array('keliones@yandex.ru', 'info@nextgis
 $config['order_id_salt'] = '!D<UI({:CH*${J02eDK247123';
 
 $config['http_domain'] = 'front.gis.to';
+$config['http_port'] = '';
 $config['http_path'] = '';
-$config['http_root'] = 'http://' . $config['http_domain'] . $config['http_path'];
-$config['http_home'] = 'http://' . $config['http_domain'] . $config['http_path'];
+$config['http_root'] = 'http://' . $config['http_domain'] . $config['http_port'] . $config['http_path'];
+$config['http_home'] = 'http://' . $config['http_domain'] . $config['http_port'] . $config['http_path'];
 
 $config['feature']['language'] = true;
 $config['feature']['user'] = true;
 
+$config['site']['url'] = 'http://front.gis.to/';
+$config['site']['title'] = 'NextGIS Shop';
+$config['site']['email_title'] = $config['site']['title'];
+$config['site']['email'] = 'sim@gis-lab.info';
+
 define('DB', 'gt_');
+
+if ($config['feature']['language']) {
+    $config['language'] = array(
+        'ru' => array('title' => 'Ру'),
+        'en' => array('title' => 'En')
+    );
+}
 
 if ($config['feature']['user']) {
     $config['user'] = array(
         'cookie_name' => 'gisto_user',
         'cookie_domain' => $config['http_domain'],
-        'cookie_path' => $config['http_root'],
+        'cookie_path' => $config['http_path'] ? $config['http_path'] : '/',
         'cookie_secure' => 0,
         'cookie_expire' => 86400, // one week
         'cookie_password_salt' => 'm<#du!@pdh[HFQ[FU41-4FI3-14J0G413-',

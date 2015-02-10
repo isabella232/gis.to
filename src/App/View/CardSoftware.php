@@ -23,13 +23,15 @@
 
                 <h2>NextGIS QGIS</h2>
                 <p>Мощная ГИС для настольного компьютера позволяет выполнять широкий спектр действий с геоданными.</p>
+
                 <a class="thumbnail-form-show" href="#">Выбрать</a>
+
+                <input type="hidden" id="software-0-selected" name="result[software][0][selected]" value="0" />
+
                 <div class="thumbnail-form-content" style="display: none">
                     <div class="form-group">
-                        <label class="control-label" for="software-1-os">Операционная система</label>
-                        <select class="form-control" id="software-1-os" name="software-os[0]">
-                            <option>Windows</option>
-                            <option>Ubuntu Linux</option>
+                        <label class="control-label" for="software-0-version">Версия</label>
+                        <select class="form-control" id="software-0-version" name="result[software][0][version]">
                         </select>
                     </div>
                     <a class="thumbnail-form-hide" href="#">Отмена</a>
@@ -45,13 +47,15 @@
 
                 <h2>NextGIS Manager</h2>
                 <p>Управляйте геоданными, ничего лишнего.</p>
+
                 <a class="thumbnail-form-show" href="#">Выбрать</a>
+
+                <input type="hidden" id="software-1-selected" name="result[software][1][selected]" value="0" />
+
                 <div class="thumbnail-form-content" style="display: none">
                     <div class="form-group">
-                        <label class="control-label" for="software-1-os">Операционная система</label>
-                        <select class="form-control" id="software-1-os" name="software-os[0]">
-                            <option>Windows</option>
-                            <option>Ubuntu Linux</option>
+                        <label class="control-label" for="software-1-version">Версия</label>
+                        <select class="form-control" id="software-1-version" name="result[software][1][version]">
                         </select>
                     </div>
                     <a class="thumbnail-form-hide" href="#">Отмена</a>
@@ -67,13 +71,15 @@
 
                 <h2>NextGIS Mobile</h2>
                 <p>Начинате использовать свои геоданные в устройстве на Android прямо сейчас.</p>
+
                 <a class="thumbnail-form-show" href="#">Выбрать</a>
+
+                <input type="hidden" id="software-2-selected" name="result[software][2][selected]" value="0" />
+
                 <div class="thumbnail-form-content" style="display: none">
                     <div class="form-group">
-                        <label class="control-label" for="software-1-os">Операционная система</label>
-                        <select class="form-control" id="software-1-os" name="software-os[0]">
-                            <option>Windows</option>
-                            <option>Ubuntu Linux</option>
+                        <label class="control-label" for="software-2-version">Версия</label>
+                        <select class="form-control" id="software-2-version" name="result[software][2][version]">
                         </select>
                     </div>
                     <a class="thumbnail-form-hide" href="#">Отмена</a>
@@ -91,3 +97,22 @@
 </div>
 
 </div>
+
+<script>
+
+    $(document).ready(function() {
+        $.getJSON('<?= Core::$config['http_root'] ?>/data/software.json', function (data) {
+            $('#software-0-version').empty();
+            $('#software-1-version').empty();
+            $('#software-2-version').empty();
+            $.each(data, function() {
+                switch (this.type) {
+                    case 'qgis': $('#software-0-version').append(new Option(this.title, this.id)); break;
+                    case 'manager': $('#software-1-version').append(new Option(this.title, this.id)); break;
+                    case 'mobile': $('#software-2-version').append(new Option(this.title, this.id)); break;
+                }
+            });
+        });
+    });
+
+</script>

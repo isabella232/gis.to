@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 define('__DIR__', dirname(__FILE__));
 
 define('ROOT', dirname(__FILE__) . '/../');
@@ -30,6 +32,33 @@ require_once(__DIR__ . '/../src/App/Component/Core.php');
 
 Core::$time = $time;
 Core::$config = &$config;
+
+function loginRequired() {
+    if (!Core::$user->isLogin()) {
+        require_once(__DIR__ . '/../src/App/Controller/IndexController.php');
+        $controller = new IndexController();
+        $controller->get403Forbidden();
+        die();
+    }
+}
+
+function managerRequired() {
+    if (!Core::$user->isLogin() || !Core::$user->info['is_manager']) {
+        require_once(__DIR__ . '/../src/App/Controller/IndexController.php');
+        $controller = new IndexController();
+        $controller->get403Forbidden();
+        die();
+    }
+}
+
+function adminRequired() {
+    if (!Core::$user->isLogin() || !Core::$user->info['is_admin']) {
+        require_once(__DIR__ . '/../src/App/Controller/IndexController.php');
+        $controller = new IndexController();
+        $controller->get403Forbidden();
+        die();
+    }
+}
 
 if ($config['feature']['language']) {
     if (file_exists(__DIR__ . '/../lang/en.php')) {
@@ -101,6 +130,13 @@ if (preg_match('/^' . $rootPathMatch . '$/Uu', $url, $matches)) {
     die();
 }
 
+if (preg_match('/^' . $rootPathMatch . '\/get(|\?.*)$/Uu', $url, $matches)) {
+    require_once(__DIR__ . '/../src/App/Controller/IndexController.php');
+    $controller = new IndexController();
+    $controller->get();
+    die();
+}
+
 if (preg_match('/^' . $rootPathMatch . '\/feedback(|\?.*)$/Uu', $url, $matches)) {
     require_once(__DIR__ . '/../src/App/Controller/FeedbackController.php');
     $controller = new FeedbackController();
@@ -112,6 +148,20 @@ if (preg_match('/^' . $rootPathMatch . '\/feedback\/ok(|\?.*)$/Uu', $url, $match
     require_once(__DIR__ . '/../src/App/Controller/FeedbackController.php');
     $controller = new FeedbackController();
     $controller->ok();
+    die();
+}
+
+if (preg_match('/^' . $rootPathMatch . '\/order(|\?.*)$/Uu', $url, $matches)) {
+    require_once(__DIR__ . '/../src/App/Controller/OrderController.php');
+    $controller = new OrderController();
+    $controller->index();
+    die();
+}
+
+if (preg_match('/^' . $rootPathMatch . '\/order\/(\d+)(|\?.*)$/Uu', $url, $matches)) {
+    require_once(__DIR__ . '/../src/App/Controller/OrderController.php');
+    $controller = new OrderController();
+    $controller->show($matches[1]);
     die();
 }
 
@@ -134,6 +184,13 @@ if (Core::$config['feature']['user']) {
         require_once(__DIR__ . '/../src/App/Controller/AuthController.php');
         $controller = new AuthController();
         echo $controller->register();
+        die();
+    }
+
+    if (preg_match('/^' . $rootPathMatch . '\/auth(|\?.*)$/Uu', $url, $matches)) {
+        require_once(__DIR__ . '/../src/App/Controller/AuthController.php');
+        $controller = new AuthController();
+        echo $controller->auth();
         die();
     }
 

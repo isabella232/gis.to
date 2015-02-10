@@ -15,7 +15,11 @@
 
                 <h2><a href="http://nextgis.ru/services/support/personal">Персональная</a></h2>
                 <p>Поддержка для частных лиц</p>
+
                 <a class="thumbnail-form-show" href="#">Выбрать</a>
+
+                <input type="hidden" id="support-0-selected" name="result[support][0][selected]" value="0" />
+
                 <div class="thumbnail-form-content" style="display: none">
                     <a class="thumbnail-form-hide" href="#">Отмена</a>
                 </div>

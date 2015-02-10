@@ -182,7 +182,7 @@
 
 <div class="page-nav">
     <a type="submit" class="btn btn-default btn-primary tab-nav" data-tab="prev"><span class="glyphicon glyphicon-chevron-left"></span> Обратно</a>
-    <button id="send-order" type="button" class="btn btn-default btn-primary">Получить</button>
+    <button id="send-order" class="btn btn-default btn-primary">Получить</button>
 </div>
 
 </div>
@@ -193,6 +193,10 @@
     $(document).ready(function() {
         $('.wizard-card-summary .remove-item').click(function () {
             $('.' + $(this).data('block')).find('.thumbnail-form-hide').click();
+        });
+
+        $('#send-order').click(function () {
+            $('#data-form').submit();
         });
     });
 
@@ -220,6 +224,16 @@
         }
 
         $('.summary-none').toggle($('.wizard-card .thumbnail.selected').length == 0);
+
+        $('#data-0-selected').val($('.wizard-card-data .block-data-0.selected').length > 0);
+
+        $('#hosting-0-selected').val($('.wizard-card-hosting .block-hosting-0.selected').length > 0);
+
+        $('#software-0-selected').val($('.wizard-card-software .block-software-0.selected').length > 0);
+        $('#software-1-selected').val($('.wizard-card-software .block-software-1.selected').length > 0);
+        $('#software-2-selected').val($('.wizard-card-software .block-software-2.selected').length > 0);
+
+        $('#support-0-selected').val($('.wizard-card-hosting .block-support-0.selected').length > 0);
     }
 
 </script>

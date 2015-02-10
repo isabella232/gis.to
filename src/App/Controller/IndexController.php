@@ -8,7 +8,7 @@ class IndexController
 
 <div class="container" style="margin-top:20px">
 
-<form id="data-form" role="form" action="' . Core::$config['http_root'] . 'data/review">
+<form id="data-form" role="form" method="post" action="' . core::$config['http_home'] . '/get">
 
 <div class="tab-content" id="cards-content">
     <div class="tab-pane active" id="home">' . $this->includeView('CardIndex') . '</div>
@@ -39,6 +39,155 @@ class IndexController
         ';
 
         return include(dirname(__FILE__) . '/../View/Common.php');
+    }
+
+    public function get()
+    {
+        if (!Core::$user->isLogin()) {
+            if (isset($_REQUEST['result'])) {
+                $_SESSION['savedResult'] = $_REQUEST['result'];
+            }
+            $_SESSION['authReturnUrl'] = core::$config['http_home'] . '/get';
+            go(core::$config['http_home'] . '/auth');
+        }
+
+        if (isset($_SESSION['savedResult']) && !isset($_REQUEST['result'])) {
+            $_REQUEST['result'] = $_SESSION['savedResult'];
+        }
+
+        Core::$sql->insert(array(
+            'status_id' => Core::$sql->i(0),
+            'insert_user_id' => Core::$sql->i(Core::$user->info['id']),
+            'insert_stamp' => Core::$sql->i(Core::$time['current_time']),
+        ), DB . 'order');
+
+        $orderId = Core::$sql->get_last_id();
+
+        // Data
+
+        if (isset($_REQUEST['result']['data'][0])) {
+            $row = $_REQUEST['result']['data'][0];
+            if ($row['selected'] == 'true') {
+                Core::$sql->insert(array(
+                    'order_id' => Core::$sql->i($orderId),
+                    'item_id' => 1,
+                    'amount' => 1,
+                    'price' => 0,
+                    'details' => Core::$sql->s(serialize($row)),
+                ), DB . 'order_item');
+            }
+        }
+
+        if (isset($_REQUEST['result']['data'][1])) {
+            $row = $_REQUEST['result']['data'][1];
+            if ($row['selected'] == 'true') {
+                Core::$sql->insert(array(
+                    'order_id' => Core::$sql->i($orderId),
+                    'item_id' => 2,
+                    'amount' => 1,
+                    'price' => 0,
+                    'details' => Core::$sql->s(serialize($row)),
+                ), DB . 'order_item');
+            }
+        }
+
+        // Software
+
+        if (isset($_REQUEST['result']['software'][0])) {
+            $row = $_REQUEST['result']['software'][0];
+            if ($row['selected'] == 'true') {
+                Core::$sql->insert(array(
+                    'order_id' => Core::$sql->i($orderId),
+                    'item_id' => 3,
+                    'amount' => 1,
+                    'price' => 0,
+                    'details' => Core::$sql->s(serialize($row)),
+                ), DB . 'order_item');
+            }
+        }
+
+        if ($_REQUEST['result']['software'][1]) {
+            $row = $_REQUEST['result']['software'][1];
+            if ($row['selected'] == 'true') {
+                Core::$sql->insert(array(
+                    'order_id' => Core::$sql->i($orderId),
+                    'item_id' => 4,
+                    'amount' => 1,
+                    'price' => 0,
+                    'details' => Core::$sql->s(serialize($row)),
+                ), DB . 'order_item');
+            }
+        }
+
+        if (isset($_REQUEST['result']['software'][2])) {
+            $row = $_REQUEST['result']['software'][2];
+            if ($row['selected'] == 'true') {
+                Core::$sql->insert(array(
+                    'order_id' => Core::$sql->i($orderId),
+                    'item_id' => 5,
+                    'amount' => 1,
+                    'price' => 0,
+                    'details' => Core::$sql->s(serialize($row)),
+                ), DB . 'order_item');
+            }
+        }
+
+        // Hosting
+
+        $backendEmail = 'sim@gis-lab.info';
+
+        if (isset($_REQUEST['result']['hosting'][0])) {
+            $row = $_REQUEST['result']['hosting'][0];
+            if ($row['selected'] == 'true') {
+                Core::$sql->insert(array(
+                    'order_id' => Core::$sql->i($orderId),
+                    'item_id' => 6,
+                    'amount' => 1,
+                    'price' => 0,
+                    'details' => Core::$sql->s(serialize($row)),
+                ), DB . 'order_item');
+
+                $template_vars = array(
+                    '{site_url}' => Core::$config['site']['url'],
+                    '{site_title}' => Core::$config['site']['title'],
+                    '{site_email}' => Core::$config['site']['email'],
+                    '{email}' => Core::$user->info['email'],
+                    '{account_id}' => Core::$user->info['id'],
+                    '{hosting_plan}' => 'Simple',
+                    '{project_id}' => $row['title'],
+                    '{order_id}' => $orderId,
+                );
+
+                $message = str_replace(array_keys($template_vars), array_values($template_vars),
+                    s('
+Order Id: {order_id}
+Account Id: {account_id}
+Email: {email}
+Hosting plan: {hosting_plan}
+Project Id: {project_id}
+'));
+
+                mail_send(core::$config['site']['email_title'], core::$config['site']['email'], $backendEmail,
+                    s('Hosting request'), $message);
+            }
+        }
+
+        // Support
+
+        if (isset($_REQUEST['result']['support'][0])) {
+            $row = $_REQUEST['result']['support'][0];
+            if ($row['selected'] == 'true') {
+                Core::$sql->insert(array(
+                    'order_id' => Core::$sql->i($orderId),
+                    'item_id' => 10,
+                    'amount' => 1,
+                    'price' => 0,
+                    'details' => serialize($row),
+                ), DB . 'order_item');
+            }
+        }
+
+        // go(core::$config['http_home'] . '/order/' . $orderId);
     }
 
     public function includeView($viewName) {

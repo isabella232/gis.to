@@ -16,20 +16,24 @@
                 <h2>Простой</h2>
                 <p>10 карт, до 10 слоёв на каждой, до 5000 запросов в месяц</p>
                 <p>Бесплатно</p>
+
                 <a class="thumbnail-form-show" href="#">Выбрать</a>
+
+                <input type="hidden" id="hosting-0-selected" name="result[hosting][0][selected]" value="0" />
+
                 <div class="thumbnail-form-content" style="display: none">
                     <div class="form-group">
                         <label class="control-label" for="title">Название проекта</label>
-                        <input class="form-control" id="title" name="title">
+                        <input class="form-control" id="title" name="result[hosting][0][title]">
                     </div>
-                    <div class="form-group">
+                    <!-- div class="form-group">
                         <label class="control-label" for="email">Почта</label>
-                        <input class="form-control" id="email" name="email">
+                        <input class="form-control" id="email" name="result[hosting][0][email]">
                     </div>
                     <div class="form-group">
                         <label class="control-label" for="pass">Пароль</label>
-                        <input type="password" class="form-control" id="pass" name="pass">
-                    </div>
+                        <input type="password" class="form-control" id="pass" name="result[hosting][0][pass]">
+                    </div -->
                     <a class="thumbnail-form-hide" href="#">Отмена</a>
                 </div>
             </div>

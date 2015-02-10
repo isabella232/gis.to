@@ -1,6 +1,6 @@
 <div class="wizard-card wizard-card-data">
 
-<h1>Данные</h1>
+<h1>Геоданные</h1>
 
 <div class="alert alert-info">
     <p>Здесь Вы можете получить данные для вашей ГИС.</p>
@@ -18,10 +18,12 @@
 
                 <a class="thumbnail-form-show" href="#">Выбрать</a>
 
+                <input type="hidden" id="data-0-selected" name="result[data][0][selected]" value="0" />
+
                 <div class="thumbnail-form-content" style="display: none">
                     <div class="form-group">
                         <label class="control-label" for="region">Регион</label>
-                        <select class="form-control" id="region" name="data[0][region]">
+                        <select class="form-control" id="region" name="result[data][0][id]">
                         </select>
                     </div>
                     <div class="form-group">

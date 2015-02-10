@@ -41,24 +41,29 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
+                        <a class="navbar-brand" href="<?= Core::$config['http_home'] ?>/">NextGIS Store</a>
                     </div>
 
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                        <ul class="nav navbar-nav">
-                            <li<?= Core::$config['current_language'] == 'ru' ? ' class="active"' : '' ?>><a
-                                    href="<?= preg_replace('/^(' . escapeRegExp(Core::$config['http_path']) . '\/)en/Uui', '$1ru', $_SERVER['REQUEST_URI']) ?>">Ру</a></li>
-                            <li<?= Core::$config['current_language'] == 'en' ? ' class="active"' : '' ?>><a
-                                    href="<?= preg_replace('/^(' . escapeRegExp(Core::$config['http_path']) . '\/)ru/Uui', '$1en', $_SERVER['REQUEST_URI']) ?>">En</a></li>
-                        </ul>
                         <?php if (Core::$config['feature']['user']) { ?>
                             <ul class="nav navbar-nav navbar-right">
                                 <?php if (! Core::$user->isLogin()) { ?>
                                     <li><a href="<?= Core::$config['http_home'] ?>/login"><?= s('Вход') ?></a></li>
                                     <li><a href="<?= Core::$config['http_home'] ?>/register"><?= s('Регистрация') ?></a></li>
                                 <?php } else { ?>
-                                    <li><a href="<?= Core::$config['http_home'] ?>/u<?= Core::$user->info['id'] ?>"><span class="icon icon-user"></span> <?= escape(Core::$user->info['title']) ?></a></li>
+                                    <li><a href="<?= Core::$config['http_home'] ?>/order"><?= s('Мои заказы') ?></a></li>
+                                    <li><a href="<?= Core::$config['http_home'] ?>/order"><span class="glyphicon glyphicon-user"></span> <?= escape(Core::$user->info['email']) ?></a></li>
                                     <li><a href="<?= Core::$config['http_home'] ?>/logout"><?= s('Выход') ?></a></li>
                                 <?php } ?>
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><?= Core::$config['language'][Core::$config['current_language']]['title'] ?><span class="caret"></span></a>
+                                    <ul class="dropdown-menu" role="menu">
+                                        <li<?= Core::$config['current_language'] == 'ru' ? ' class="active"' : '' ?>><a
+                                                href="<?= preg_replace('/^(' . escapeRegExp(Core::$config['http_path']) . '\/)en/Uui', '$1ru', $_SERVER['REQUEST_URI']) ?>">Ру</a></li>
+                                        <li<?= Core::$config['current_language'] == 'en' ? ' class="active"' : '' ?>><a
+                                                href="<?= preg_replace('/^(' . escapeRegExp(Core::$config['http_path']) . '\/)ru/Uui', '$1en', $_SERVER['REQUEST_URI']) ?>">En</a></li>
+                                    </ul>
+                                </li>
                             </ul>
                         <?php } ?>
                     </div>

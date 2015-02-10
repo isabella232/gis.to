@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "type": "qgis",
+    "title": "NextGIS QGIS 1.1.2 Windows (68 Mb, msi)",
+    "url": "http://gis.to/upload/qgis-1.1.2.msi"
+  },
+  {
+    "id": 2,
+    "type": "qgis",
+    "title": "NextGIS QGIS 1.1.2 Windows (64Mb, zip)",
+    "url": "http://gis.to/upload/qgis-1.1.2.zip"
+  },
+  {
+    "id": 3,
+    "type": "manager",
+    "title": "NextGIS Manager 2.1 Windows (32Mb, zip)",
+    "url": "http://gis.to/upload/qgis-manager-1.1.2.zip"
+  },
+  {
+    "id": 4,
+    "type": "mobile",
+    "title": "NextGIS Mobile Android",
+    "url": "https://play.google.com/store/apps/details?id=com.com2us.kungfupet.normal2.freefull.google.global.android.common"
+  }
+]
