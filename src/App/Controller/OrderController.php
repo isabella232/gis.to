@@ -49,6 +49,10 @@ class OrderController
             go(core::$config['http_home'] . '/order');
         }
 
+        if ($item['user_id'] != Core::$user->info['id']) {
+            go(core::$config['http_home']);
+        }
+
         $html = '<div class="container">';
 
         $html .= '<h1 style="margin-bottom:40px">' . s('Заказ №') . $item['id'] . '</h1>';

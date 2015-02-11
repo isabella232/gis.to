@@ -8,15 +8,10 @@ $config['database'] = array(
     'server' 	=> 'localhost',
     'database' 	=> 'gisto',
     'username' 	=> 'gisto',
-    'password' 	=> 'cf234mj081u',
+    'password' 	=> 'Gh2118tdh#423',
     'codepage' 	=> 'utf8',
     'collate' 	=> 'utf8_bin',
 );
-
-$config['feedback_notification_emails'] = array('keliones@yandex.ru', 'info@nextgis.ru');
-$config['order_notification_emails'] = array('keliones@yandex.ru', 'info@nextgis.ru');
-
-$config['order_id_salt'] = '!D<UI({:CH*${J02eDK247123';
 
 $config['http_domain'] = 'front.gis.to';
 $config['http_port'] = '';
@@ -48,9 +43,9 @@ if ($config['feature']['user']) {
         'cookie_path' => $config['http_path'] ? $config['http_path'] : '/',
         'cookie_secure' => 0,
         'cookie_expire' => 86400, // one week
-        'cookie_password_salt' => 'm<#du!@pdh[HFQ[FU41-4FI3-14J0G413-',
-        'password_salt' => '<k@()eurj!:pfh81PHjhfp(!@#H8F0H13200',
-        'lost_password_salt' => '@j!y*(){f:;;124[Pcvj<1C0,-ZX3I4-1`8U93',
+        'cookie_password_salt' => 'PLO*&Dgtp2hdy293p7fdgG#d32@!J(E&YGUJC',
+        'password_salt' => 'LJH!O@#*!YE)*(#_HQOUE#&*YDIDJIJDsdsWI',
+        'lost_password_salt' => 'NJU!ODY*L:HBHJAShjoadocn/;Gkjh:IG83#K!JHD8',
     );
 
     define('M_USER', 1);
