@@ -17,7 +17,7 @@ class OrderController
 
         $html .= '<h3>' . s('Мои заказы') . '</h3>';
 
-        $data = Core::$sql->get('id, insert_user_id', DB . 'order');
+        $data = Core::$sql->get('id, insert_user_id', DB . 'order', 'insert_user_id=' . Core::$sql->i(Core::$user->info['id']));
 
         if (count($data)) {
             $html .= '<ul>';
