@@ -49,7 +49,7 @@ class OrderController
             go(core::$config['http_home'] . '/order');
         }
 
-        if ($item['user_id'] != Core::$user->info['id']) {
+        if ($item['insert_user_id'] != Core::$user->info['id']) {
             go(core::$config['http_home']);
         }
 
@@ -58,7 +58,7 @@ class OrderController
         $html .= '<h1 style="margin-bottom:40px">' . s('Заказ №') . $item['id'] . '</h1>';
 
         $data = Core::$sql->get('oi.*, i.type_id as item_type_id, i.title as item_title, i.description as item_description, i.price as item_price, i.status_id as item_status_id',
-                DB . 'order_item oi, ' . DB . 'item i', 'oi.item_id=i.id');
+                DB . 'order_item oi, ' . DB . 'item i', 'oi.item_id=i.id and oi.order_id=' . Core::$sql->i($item['id']));
 
         if (count($data)) {
 

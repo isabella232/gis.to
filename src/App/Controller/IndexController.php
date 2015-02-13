@@ -187,7 +187,7 @@ Project Id: {project_id}
             }
         }
 
-        // go(core::$config['http_home'] . '/order/' . $orderId);
+        go(core::$config['http_home'] . '/order/' . $orderId);
     }
 
     public function includeView($viewName) {
