@@ -28,6 +28,7 @@ require_once(__DIR__ . '/../src/App/Component/lib.mail.php');
 require_once(__DIR__ . '/../src/App/Component/Page.php');
 require_once(__DIR__ . '/../src/App/Component/Form.php');
 require_once(__DIR__ . '/../src/App/Component/lib.image_cache.php');
+require_once(__DIR__ . '/../src/App/Component/Hosting.php');
 require_once(__DIR__ . '/../src/App/Component/Core.php');
 
 Core::$time = $time;
@@ -161,6 +162,20 @@ if (preg_match('/^' . $rootPathMatch . '\/order(|\?.*)$/Uu', $url, $matches)) {
 if (preg_match('/^' . $rootPathMatch . '\/order\/(\d+)(|\?.*)$/Uu', $url, $matches)) {
     require_once(__DIR__ . '/../src/App/Controller/OrderController.php');
     $controller = new OrderController();
+    $controller->show($matches[1]);
+    die();
+}
+
+if (preg_match('/^' . $rootPathMatch . '\/hosting(|\?.*)$/Uu', $url, $matches)) {
+    require_once(__DIR__ . '/../src/App/Controller/HostingController.php');
+    $controller = new HostingController();
+    $controller->index();
+    die();
+}
+
+if (preg_match('/^' . $rootPathMatch . '\/hosting\/(\d+)(|\?.*)$/Uu', $url, $matches)) {
+    require_once(__DIR__ . '/../src/App/Controller/HostingController.php');
+    $controller = new HostingController();
     $controller->show($matches[1]);
     die();
 }

@@ -84,7 +84,7 @@ class OrderController
                         break;
 
                     case 4:
-                        $text .= '<p>' . s('Письмо с инструкциями по работе с хостингом отправлены вам на email указанный при регистрации') . '</p>';
+                        $text .= '<p>' . s('Информация о заказанном вами хостинге доступна в разделе') . ' «<a href="' . Core::$config['http_home'] . '/hosting">' . s('Мой хостинг') . '</a>»</p>';
                         break;
 
                     case 5:
@@ -94,7 +94,7 @@ class OrderController
                 $html .= '<tr>
                     <td>' . $text . '</td>
                     <td style="text-align:center;">' . $row['amount'] . '</td>
-                    <td style="text-align:center;">' . ($row['price'] ? $row['price'] : 'Бесплатно') . '</td>
+                    <td style="text-align:center;">' . ($row['price'] ? $row['price'] : s('Бесплатно')) . '</td>
                     </tr>';
             }
 

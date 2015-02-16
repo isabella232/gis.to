@@ -134,11 +134,13 @@ class IndexController
 
         // Hosting
 
-        $backendEmail = 'sim@gis-lab.info';
-
         if (isset($_REQUEST['result']['hosting'][0])) {
             $row = $_REQUEST['result']['hosting'][0];
             if ($row['selected'] == 'true') {
+
+                $row['password'] = substr(sha1(sha1(mt_rand())), 0, 7);
+                $row['title'] = $row['title'];
+
                 Core::$sql->insert(array(
                     'order_id' => Core::$sql->i($orderId),
                     'item_id' => 6,
@@ -147,6 +149,13 @@ class IndexController
                     'details' => Core::$sql->s(serialize($row)),
                 ), DB . 'order_item');
 
+                Hosting::create(
+                    $row['title'],
+                    $row['password'],
+                    Core::$user->info['id']
+                );
+
+/*
                 $template_vars = array(
                     '{site_url}' => Core::$config['site']['url'],
                     '{site_title}' => Core::$config['site']['title'],
@@ -157,6 +166,8 @@ class IndexController
                     '{project_id}' => $row['title'],
                     '{order_id}' => $orderId,
                 );
+
+                $backendEmail = 'sim@gis-lab.info';
 
                 $message = str_replace(array_keys($template_vars), array_values($template_vars),
                     s('
@@ -169,6 +180,7 @@ Project Id: {project_id}
 
                 mail_send(core::$config['site']['email_title'], core::$config['site']['email'], $backendEmail,
                     s('Hosting request'), $message);
+*/
             }
         }
 

@@ -51,9 +51,14 @@
                                     <li><a href="<?= Core::$config['http_home'] ?>/login"><?= s('Вход') ?></a></li>
                                     <li><a href="<?= Core::$config['http_home'] ?>/register"><?= s('Регистрация') ?></a></li>
                                 <?php } else { ?>
-                                    <li><a href="<?= Core::$config['http_home'] ?>/order"><?= s('Мои заказы') ?></a></li>
-                                    <li><a href="<?= Core::$config['http_home'] ?>/order"><span class="glyphicon glyphicon-user"></span> <?= escape(Core::$user->info['email']) ?></a></li>
-                                    <li><a href="<?= Core::$config['http_home'] ?>/logout"><?= s('Выход') ?></a></li>
+                                    <li><a href="<?= Core::$config['http_home'] ?>/hosting"><?= s('Мой хостинг') ?></a></li>
+                                    <li class="dropdown">
+                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> <?= escape(Core::$user->info['email']) ?><span class="caret"></span></a>
+                                        <ul class="dropdown-menu" role="menu">
+                                        <li><a href="<?= Core::$config['http_home'] ?>/order"><?= s('Мои заказы') ?></a></li>
+                                        <li><a href="<?= Core::$config['http_home'] ?>/logout"><?= s('Выход') ?></a></li>
+                                        </ul>
+                                    </li>
                                 <?php } ?>
                                 <li class="dropdown">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><?= Core::$config['language'][Core::$config['current_language']]['title'] ?><span class="caret"></span></a>
