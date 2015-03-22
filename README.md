@@ -11,7 +11,7 @@ General settings
 ----------------
 
 ```
-$ sudo apt-get install mysql-server libapache2-mod-php5
+$ sudo apt-get install mysql-server libapache2-mod-php5 php5-mysql
 $ cd /home/rykov
 $ git clone git@github.com:nextgis/gis.to.git
 $ cd gis.to
@@ -27,6 +27,7 @@ Apache settings
 $ sudo ln -s /home/rykov/gis.to/ /var/www/html/
 $ sudo touch /etc/apache2/sites-available/gis.to.conf
 $ sudo a2ensite gis.to
+$ sudo a2enmod rewrite
 ```
 
 **gis.to.conf**
