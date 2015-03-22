@@ -11,7 +11,7 @@ General settings
 ----------------
 
 ```
-$ sudo apt-get install mysql libapache2-mod-php5
+$ sudo apt-get install mysql-server libapache2-mod-php5
 $ cd /home/rykov
 $ git clone git@github.com:nextgis/gis.to.git
 $ cd gis.to
