@@ -54,7 +54,6 @@ class HostingController
         }
 
         $data = Hosting::getStatus($item['instance_id']);
-
         $html = '<div class="container">';
 
         $html .= '<h1 style="margin-bottom:40px">' . s('Хост') . ' "' . $item['instance_id'] . '"</h1>';

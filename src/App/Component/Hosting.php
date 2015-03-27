@@ -22,13 +22,17 @@ class Hosting
             'update_user_id' => Core::$sql->i(Core::$user->info['id']),
         ), DB . 'hosting');
 
-        return self::sendRequest('http://api-async.gis.to/api/class/machineer/start', json_encode(array('param' => array(
-            'Project' => self::DEFAULT_PROJECT,
-            'InstanceClass' => self::DEFAULT_INSTANCE_CLASS,
-            'InstanceID' => $instanceId,
-            'Master' => self::DEFAULT_MASTER,
-            'Password' => $password
-        ))), self::INSTANCE_CREATE_HTTP_TIMEOUT);
+
+
+        $json = file_get_contents('http://api-async.gis.to/api/registry/projects/nextgisweb/new');
+        $obj = json_decode($json);
+
+
+        $json = file_get_contents('http://api-async.gis.to/api/registry/projects/nextgisweb/new');
+        $obj = json_decode($json);
+        $obj->param->Name = escape($instanceId) . '.gis.to';
+
+        return self::sendRequest('http://api-async.gis.to/api/class/machineer/start', json_encode($obj), self::INSTANCE_CREATE_HTTP_TIMEOUT);
     }
 
     static public function getStatus($instanceId) {
@@ -36,12 +40,7 @@ class Hosting
 
         if ((Core::$time['current_time'] - $data['status_stamp']) > self::CACHE_STATUS_TIMEOUT) {
 
-            $data['status_data'] = self::sendRequest('http://api-async.gis.to/api/class/machineer/status', json_encode(array('param' => array(
-                'Project' => self::DEFAULT_PROJECT,
-                'InstanceClass' => self::DEFAULT_INSTANCE_CLASS,
-                'InstanceID' => $instanceId,
-                'Master' => self::DEFAULT_MASTER,
-            ))), self::INSTANCE_STATUS_HTTP_TIMEOUT);
+            $data['status_data'] = file_get_contents('http://api-async.gis.to/api/registry/projects/nextgisweb/instance/' . $instanceId .'.gis.to/status');
 
             $data['status_id'] = (
                 ($data['status_data']['LVM']['isRunning'] == 'True')
@@ -62,7 +61,7 @@ class Hosting
     }
 
     static public function sendRequest($url, $postParams, $timeout) {
-        $ch = curl_init();
+        $ch = curl_init($url);
 
         curl_setopt($ch, CURLOPT_URL, $url);
 

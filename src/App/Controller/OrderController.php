@@ -57,33 +57,32 @@ class OrderController
 
         $html .= '<h1 style="margin-bottom:40px">' . s('Заказ №') . $item['id'] . '</h1>';
 
-        $data = Core::$sql->get('oi.*, i.type_id as item_type_id, i.title as item_title, i.description as item_description, i.price as item_price, i.status_id as item_status_id',
-                DB . 'order_item oi, ' . DB . 'item i', 'oi.item_id=i.id and oi.order_id=' . Core::$sql->i($item['id']));
+
+        $data = Core::$sql->get('oi.*, i.type_id as item_type_id, i.title as item_title, i.description as item_description, i.price as item_price, i.status_id as item_status_id, it.title as item_type_title',
+            DB . 'order_item oi, ' . DB . 'item i,' . DB . 'item_type as it',
+            'oi.item_id=i.id and i.type_id=it.id and oi.order_id=' . Core::$sql->i($item['id']));
 
         if (count($data)) {
-
             $html .= '<table class="table">';
 
             $html .= '<tr><th>Наименование</th><th style="text-align:center;">Количество</th><th style="text-align:center;">Цена</th>';
 
             foreach ($data as $row) {
                 $details = $row['details'] ? unserialize($row['details']) : false;
-
-                $text = '<p><strong>' . $row['item_title'] . '</strong></p>';
-
+                $text = '<p><strong>' . $row['item_title'] . '</strong> <span>('. $row['item_type_title'] . ')</span></p>';
                 switch ($row['item_type_id']) {
-                    case 2:
+                    case 6:
                         $temp = $this->getDataRow($details['id']);
                         $temp['url'] = 'http://gis-lab.info/';
                         $text .= '<p><a target="_blank" href="' . escape($temp['url']) . '">' . escape($temp['title']) . '</a></p>';
                         break;
 
-                    case 3:
+                    case 8:
                         $temp = $this->getSoftwareRow($details['version']);
                         $text .= '<p><a target="_blank" href="' . escape($temp['url']) . '">' . escape($temp['title']) . '</a></p>';
                         break;
 
-                    case 4:
+                    case 7:
                         $text .= '<p>' . s('Информация о заказанном вами хостинге доступна в разделе') . ' «<a href="' . Core::$config['http_home'] . '/hosting">' . s('Мой хостинг') . '</a>»</p>';
                         break;
 

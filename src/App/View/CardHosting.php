@@ -8,8 +8,11 @@
 
 <div class="row">
 
+    <?php
+        $num_host = count(Core::$sql->get('id', DB . 'hosting', 'owner_id=' . Core::$sql->i(Core::$user->info['id'])));
+    ?>
     <div class="col-sm-6 col-md-4">
-        <div class="thumbnail block-hosting-0" data-summary="summary-hosting-0">
+        <div class="thumbnail block-hosting-0" data-summary="summary-hosting-0" <?php if($num_host > 0) echo 'style="opacity:0.5";'?>>
             <div class="caption">
                 <a class="help" href="#"><span class="help glyphicon glyphicon-question-sign"></span></a>
 
@@ -17,9 +20,13 @@
                 <p>10 карт, до 10 слоёв на каждой, до 5000 запросов в месяц</p>
                 <p>Бесплатно</p>
 
+                <?php
+                    if($num_host == 0) {
+                ?>
                 <a class="thumbnail-form-show" href="#">Выбрать</a>
 
                 <input type="hidden" id="hosting-0-selected" name="result[hosting][0][selected]" value="0" />
+
 
                 <div class="thumbnail-form-content" style="display: none">
                     <div class="form-group">
@@ -36,6 +43,13 @@
                     </div -->
                     <a class="thumbnail-form-hide" href="#">Отмена</a>
                 </div>
+                <?php
+                    } else {
+                ?>
+                    <p style="color:red">Услуга уже заказана</p>
+                <?php
+                    }
+                ?>
             </div>
         </div>
     </div>
