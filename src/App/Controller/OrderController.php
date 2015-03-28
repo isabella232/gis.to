@@ -62,6 +62,14 @@ class OrderController
             DB . 'order_item oi, ' . DB . 'item i,' . DB . 'item_type as it',
             'oi.item_id=i.id and i.type_id=it.id and oi.order_id=' . Core::$sql->i($item['id']));
 
+
+        $items = Core::$sql->get('*', DB . 'item');
+
+        echo '<p>'. count($items) .'</p>';
+        echo '<p>'. $items[0]['title'] .'</p>';
+        //echo '<p>'. .'</p>';
+        //echo '<p>'. .'</p>';
+        //echo '<p>'. .'</p>';
         if (count($data)) {
             $html .= '<table class="table">';
 
