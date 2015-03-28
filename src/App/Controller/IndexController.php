@@ -92,7 +92,7 @@ class IndexController
 
         // Data
 
-        if (isset($_REQUEST['result']['data'][0])) {
+        /*if (isset($_REQUEST['result']['data'][0])) {
             $row = $_REQUEST['result']['data'][0];
             if ($row['selected'] == 'true') {
                 Core::$sql->insert(array(
@@ -116,11 +116,11 @@ class IndexController
                     'details' => Core::$sql->s(serialize($row)),
                 ), DB . 'order_item');
             }
-        }
+        }*/
 
         // Software
 
-        if (isset($_REQUEST['result']['software'][0])) {
+        /*if (isset($_REQUEST['result']['software'][0])) {
             $row = $_REQUEST['result']['software'][0];
             if ($row['selected'] == 'true') {
                 Core::$sql->insert(array(
@@ -157,7 +157,7 @@ class IndexController
                     'details' => Core::$sql->s(serialize($row)),
                 ), DB . 'order_item');
             }
-        }
+        }*/
 
         // Hosting
 
@@ -212,7 +212,7 @@ class IndexController
 
         // Support
 
-        if (isset($_REQUEST['result']['support'][0])) {
+        /*if (isset($_REQUEST['result']['support'][0])) {
             $row = $_REQUEST['result']['support'][0];
             die();
             if ($row['selected'] == 'true') {
@@ -224,7 +224,7 @@ class IndexController
                     'details' => Core::$sql->s(serialize($row)),
                 ), DB . 'order_item');
             }
-        }
+        }*/
         go(core::$config['http_home'] . '/order/' . $orderId);
     }
 
