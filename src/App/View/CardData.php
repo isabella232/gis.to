@@ -9,14 +9,14 @@
 <div class="row">
 
     <div class="col-sm-6 col-md-6">
-        <div class="thumbnail thumbnail-with-image thumbnail-form block-data-0" data-summary="summary-data-0">
+        <div class="thumbnail thumbnail-with-image thumbnail-form block-data-0" data-summary="summary-data-0" style="opacity:0.5">
             <div class="caption">
-                <a class="help" href="#"><span class="help glyphicon glyphicon-question-sign"></span></a>
+                <!--<a class="help" href="#"><span class="help glyphicon glyphicon-question-sign"></span></a>-->
 
                 <h2>Базовые геоданные</h2>
                 <p>Картографическая основа для вашего проекта: границы областей и районов, дороги и дома.</p>
 
-                <a class="thumbnail-form-show" href="#">Выбрать</a>
+                <!--<a class="thumbnail-form-show" href="#">Выбрать</a>
 
                 <input type="hidden" id="data-0-selected" name="result[data][0][selected]" value="0" />
 
@@ -33,7 +33,9 @@
                         </select>
                     </div>
                     <a class="thumbnail-form-hide" href="#">Отмена</a>
-                </div>
+                </div>-->
+
+                <p style="color:red">Скоро!</p>
             </div>
         </div>
     </div>

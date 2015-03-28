@@ -62,14 +62,6 @@ class OrderController
             DB . 'order_item oi, ' . DB . 'item i,' . DB . 'item_type as it',
             'oi.item_id=i.id and i.type_id=it.id and oi.order_id=' . Core::$sql->i($item['id']));
 
-
-        $items = Core::$sql->get('*', DB . 'item');
-
-        echo '<p>'. count($items) .'</p>';
-        echo '<p>'. $items[0]['title'] .'</p>';
-        //echo '<p>'. .'</p>';
-        //echo '<p>'. .'</p>';
-        //echo '<p>'. .'</p>';
         if (count($data)) {
             $html .= '<table class="table">';
 
@@ -94,7 +86,7 @@ class OrderController
                         $text .= '<p>' . s('Информация о заказанном вами хостинге доступна в разделе') . ' «<a href="' . Core::$config['http_home'] . '/hosting">' . s('Мой хостинг') . '</a>»</p>';
                         break;
 
-                    case 5:
+                    case 9:
                         break;
                 }
 

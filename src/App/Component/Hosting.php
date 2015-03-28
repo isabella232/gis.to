@@ -26,10 +26,6 @@ class Hosting
 
         $json = file_get_contents('http://api-async.gis.to/api/registry/projects/nextgisweb/new');
         $obj = json_decode($json);
-
-
-        $json = file_get_contents('http://api-async.gis.to/api/registry/projects/nextgisweb/new');
-        $obj = json_decode($json);
         $obj->param->Name = escape($instanceId) . '.gis.to';
 
         return self::sendRequest('http://api-async.gis.to/api/class/machineer/start', json_encode($obj), self::INSTANCE_CREATE_HTTP_TIMEOUT);

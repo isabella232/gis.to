@@ -11,7 +11,7 @@
     <div class="col-sm-6 col-md-6">
         <div class="thumbnail thumbnail-with-image img-category-data index-category">
             <div class="caption">
-                <a class="help" href="#"><span class="help glyphicon glyphicon-question-sign"></span></a>
+                <!--<a class="help" href="#"><span class="help glyphicon glyphicon-question-sign"></span></a>-->
 
                 <h2>Геоданные</h2>
                 <p>Базовые и тематические данные для вашей системы.</p>
@@ -23,7 +23,7 @@
     <div class="col-sm-6 col-md-6">
         <div class="thumbnail thumbnail-with-image img-category-hosting index-category">
             <div class="caption">
-                <a class="help" href="#"><span class="help glyphicon glyphicon-question-sign"></span></a>
+                <!--<a class="help" href="#"><span class="help glyphicon glyphicon-question-sign"></span></a>-->
 
                 <h2>Веб</h2>
                 <p>Разверните свой картографический проект в веб.</p>
@@ -35,7 +35,7 @@
     <div class="col-sm-6 col-md-6">
         <div class="thumbnail thumbnail-with-image img-category-software index-category">
             <div class="caption">
-                <a class="help" href="#"><span class="help glyphicon glyphicon-question-sign"></span></a>
+                <!--<a class="help" href="#"><span class="help glyphicon glyphicon-question-sign"></span></a>-->
 
                 <h2>Софт</h2>
                 <p>Бесплатное программное обеспечение для работы с геоданными на настольном компьютере и мобильном.</p>
@@ -47,7 +47,7 @@
     <div class="col-sm-6 col-md-6">
         <div class="thumbnail thumbnail-with-image img-category-support index-category">
             <div class="caption">
-                <a class="help" href="#"><span class="help glyphicon glyphicon-question-sign"></span></a>
+                <!--<a class="help" href="#"><span class="help glyphicon glyphicon-question-sign"></span></a>-->
 
                 <h2>Поддержка</h2>
                 <p>У вас есть вопросы? У нашей поддержки есть ответы.</p>

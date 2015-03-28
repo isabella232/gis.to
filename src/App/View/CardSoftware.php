@@ -17,14 +17,14 @@
     <div class="row">
 
     <div class="col-sm-6 col-md-4">
-        <div class="thumbnail block-software-0" data-summary="summary-software-0">
+        <div class="thumbnail block-software-0" data-summary="summary-software-0" style="opacity:0.5">
             <div class="caption">
-                <a class="help" href="#"><span class="help glyphicon glyphicon-question-sign"></span></a>
+                <!--<a class="help" href="#"><span class="help glyphicon glyphicon-question-sign"></span></a>-->
 
                 <h2>NextGIS QGIS</h2>
                 <p>Мощная ГИС для настольного компьютера позволяет выполнять широкий спектр действий с геоданными.</p>
 
-                <a class="thumbnail-form-show" href="#">Выбрать</a>
+                <!--<a class="thumbnail-form-show" href="#">Выбрать</a>
 
                 <input type="hidden" id="software-0-selected" name="result[software][0][selected]" value="0" />
 
@@ -35,20 +35,22 @@
                         </select>
                     </div>
                     <a class="thumbnail-form-hide" href="#">Отмена</a>
-                </div>
+                </div>-->
+
+                <p style="color:red">Скоро!</p>
             </div>
         </div>
     </div>
 
     <div class="col-sm-6 col-md-4">
-        <div class="thumbnail block-software-1" data-summary="summary-software-1">
+        <div class="thumbnail block-software-1" data-summary="summary-software-1" style="opacity:0.5">
             <div class="caption">
-                <a class="help" href="#"><span class="help glyphicon glyphicon-question-sign"></span></a>
+                <!--<a class="help" href="#"><span class="help glyphicon glyphicon-question-sign"></span></a>-->
 
                 <h2>NextGIS Manager</h2>
                 <p>Управляйте геоданными, ничего лишнего.</p>
 
-                <a class="thumbnail-form-show" href="#">Выбрать</a>
+                <!--<a class="thumbnail-form-show" href="#">Выбрать</a>
 
                 <input type="hidden" id="software-1-selected" name="result[software][1][selected]" value="0" />
 
@@ -59,20 +61,22 @@
                         </select>
                     </div>
                     <a class="thumbnail-form-hide" href="#">Отмена</a>
-                </div>
+                </div>-->
+
+                <p style="color:red">Скоро!</p>
             </div>
         </div>
     </div>
 
     <div class="col-sm-6 col-md-4">
-        <div class="thumbnail block-software-2" data-summary="summary-software-2">
+        <div class="thumbnail block-software-2" data-summary="summary-software-2" style="opacity:0.5">
             <div class="caption">
-                <a class="help" href="#"><span class="help glyphicon glyphicon-question-sign"></span></a>
+                <!--<a class="help" href="#"><span class="help glyphicon glyphicon-question-sign"></span></a>-->
 
                 <h2>NextGIS Mobile</h2>
                 <p>Начинате использовать свои геоданные в устройстве на Android прямо сейчас.</p>
 
-                <a class="thumbnail-form-show" href="#">Выбрать</a>
+                <!--<a class="thumbnail-form-show" href="#">Выбрать</a>
 
                 <input type="hidden" id="software-2-selected" name="result[software][2][selected]" value="0" />
 
@@ -83,7 +87,9 @@
                         </select>
                     </div>
                     <a class="thumbnail-form-hide" href="#">Отмена</a>
-                </div>
+                </div>-->
+
+                <p style="color:red">Скоро!</p>
             </div>
         </div>
     </div>

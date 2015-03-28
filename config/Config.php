@@ -8,7 +8,7 @@ $config['database'] = array(
     'server' 	=> 'localhost',
     'database' 	=> 'gisto',
     'username' 	=> 'gisto',
-    'password' 	=> 'Gh2118tdh#423',
+        'password' 	=> 'Gh2118tdh#423',
     'codepage' 	=> 'utf8',
     'collate' 	=> 'utf8_bin',
 );

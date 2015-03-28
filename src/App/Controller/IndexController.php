@@ -59,7 +59,6 @@ class IndexController
                 /*&& preg_match("/^[^\.]{1,63}(\.[^\.]{1,63})*$/", $domain_name)*/   ); //length of each label
         }
 
-        echo $_REQUEST['result']['hosting'][0];
         if (isset($_REQUEST['result']['hosting'][0])) {
             $row = $_REQUEST['result']['hosting'][0];
             $instance_id = $row['title'];
@@ -215,13 +214,14 @@ class IndexController
 
         if (isset($_REQUEST['result']['support'][0])) {
             $row = $_REQUEST['result']['support'][0];
+            die();
             if ($row['selected'] == 'true') {
                 Core::$sql->insert(array(
                     'order_id' => Core::$sql->i($orderId),
                     'item_id' => 23,
                     'amount' => 1,
                     'price' => 0,
-                    'details' => serialize($row),
+                    'details' => Core::$sql->s(serialize($row)),
                 ), DB . 'order_item');
             }
         }

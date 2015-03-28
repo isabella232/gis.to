@@ -14,7 +14,7 @@
     <div class="col-sm-6 col-md-4">
         <div class="thumbnail block-hosting-0" data-summary="summary-hosting-0" <?php if($num_host > 0) echo 'style="opacity:0.5";'?>>
             <div class="caption">
-                <a class="help" href="#"><span class="help glyphicon glyphicon-question-sign"></span></a>
+                <!--<a class="help" href="#"><span class="help glyphicon glyphicon-question-sign"></span></a>-->
 
                 <h2>Простой</h2>
                 <p>10 карт, до 10 слоёв на каждой, до 5000 запросов в месяц</p>

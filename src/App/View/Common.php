@@ -70,6 +70,7 @@
                                                 href="<?= preg_replace('/^(' . escapeRegExp(Core::$config['http_path']) . '\/)ru/Uui', '$1en', $_SERVER['REQUEST_URI']) ?>">En</a></li>
                                     </ul>
                                 </li>
+                                <li><a class="help" href="http://nextgis.ru/contact/"><span class="help glyphicon glyphicon-question-sign"></span></a></li>
                             </ul>
                         <?php } ?>
                     </div>
