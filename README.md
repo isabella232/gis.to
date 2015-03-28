@@ -12,12 +12,16 @@ General settings
 
 ```
 $ sudo apt-get install mysql-server libapache2-mod-php5 php5-mysql php5-curl
-$ cd /home/rykov
+$ cd ~
 $ git clone git@github.com:nextgis/gis.to.git
 $ cd gis.to
 $ echo "CREATE DATABASE gisto" | mysql -u root -p
 $ mysql gisto -u root -p < schema.sql
 $ echo '127.0.0.1    gis.to' | sudo tee --append /etc/hosts
+$ mysql -u gisto -p
+$ use gisto;
+$ source /var/www/html/gis.to/gt_item.sql
+$ source /var/www/html/gis.to/gt_item_type.sql
 ```
 
 Apache settings
@@ -38,7 +42,7 @@ $ sudo a2enmod rewrite
 <VirtualHost *:80>
 
 DocumentRoot /var/www/html/gis.to
-ServerName gis.to
+ServerName test.gis.to
 
 php_admin_value open_basedir /var/www/html/gis.to:/tmp
 
@@ -71,7 +75,7 @@ App settings
 ...
 $config['database']['password'] = 'your password';
 
-$config['http_domain'] = 'gis.to';
+$config['http_domain'] = 'test.gis.to';
 $config['http_port'] = ':80';
 ...
 ```

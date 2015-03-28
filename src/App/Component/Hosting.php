@@ -12,6 +12,10 @@ class Hosting
     const CACHE_STATUS_TIMEOUT = 300;
 
     static public function create($instanceId, $password, $ownerId) {
+        $json = file_get_contents('http://api-async.gis.to/api/registry/projects/nextgisweb/new');
+        $obj = json_decode($json);
+        $obj->param->Name = escape($instanceId) . '.gis.to';
+
         Core::$sql->insert(array(
             'owner_id' => Core::$sql->i($ownerId),
             'instance_id' => Core::$sql->s($instanceId),
@@ -20,23 +24,20 @@ class Hosting
             'insert_user_id' => Core::$sql->i(Core::$user->info['id']),
             'update_stamp' => Core::$sql->i(Core::$time['current_time']),
             'update_user_id' => Core::$sql->i(Core::$user->info['id']),
+            'instance_server_id' => Core::$sql->s($obj->param->InstanceID)
         ), DB . 'hosting');
 
-
-
-        $json = file_get_contents('http://api-async.gis.to/api/registry/projects/nextgisweb/new');
-        $obj = json_decode($json);
-        $obj->param->Name = escape($instanceId) . '.gis.to';
 
         return self::sendRequest('http://api-async.gis.to/api/class/machineer/start', json_encode($obj), self::INSTANCE_CREATE_HTTP_TIMEOUT);
     }
 
     static public function getStatus($instanceId) {
-        $data = Core::$sql->row('status_id, status_data, status_stamp', DB . 'hosting', 'instance_id=' . Core::$sql->s($instanceId));
+        $data = Core::$sql->row('status_id, status_data, status_stamp, instance_server_id', DB . 'hosting', 'instance_id=' . Core::$sql->s($instanceId));
 
         if ((Core::$time['current_time'] - $data['status_stamp']) > self::CACHE_STATUS_TIMEOUT) {
 
-            $data['status_data'] = file_get_contents('http://api-async.gis.to/api/registry/projects/nextgisweb/instance/' . $instanceId .'.gis.to/status');
+            echo 'http://api-async.gis.to/api/registry/projects/nextgisweb/instance/' . $data['instance_server_id'] .'/status';
+            $data['status_data'] = file_get_contents('http://api-async.gis.to/api/registry/projects/nextgisweb/instance/' . $data['instance_server_id'] .'/status');
 
             $data['status_id'] = (
                 ($data['status_data']['LVM']['isRunning'] == 'True')

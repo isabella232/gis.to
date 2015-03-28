@@ -76,6 +76,7 @@ CREATE TABLE `gt_hosting` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `owner_id` int(11) NOT NULL,
   `instance_id` varchar(255) NOT NULL,
+  `instance_server_id` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
   `status_id` int(11) NOT NULL,
   `status_stamp` int(11) NOT NULL,
