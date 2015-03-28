@@ -52,7 +52,12 @@
                                     <li><a href="<?= Core::$config['http_home'] ?>/login"><?= s('Вход') ?></a></li>
                                     <li><a href="<?= Core::$config['http_home'] ?>/register"><?= s('Регистрация') ?></a></li>
                                 <?php } else { ?>
-                                    <li><a href="<?= Core::$config['http_home'] ?>/hosting"><?= s('Мой хостинг') ?></a></li>
+                                    <?php
+                                        $hostings = Core::$sql->get('id', DB . 'hosting', 'owner_id=' . Core::$sql->i(Core::$user->info['id']));
+                                        if(count($hostings)) {
+                                    ?>
+                                        <li><a href="<?= Core::$config['http_home'] ?>/hosting/<?= $hostings[0]['id'] ?>"><?= s('Мой хостинг') ?></a></li>
+                                    <?php } ?>
                                     <li class="dropdown">
                                         <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> <?= escape(Core::$user->info['email']) ?><span class="caret"></span></a>
                                         <ul class="dropdown-menu" role="menu">

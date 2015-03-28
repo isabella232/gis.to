@@ -83,7 +83,7 @@ class OrderController
                         break;
 
                     case 7:
-                        $text .= '<p>' . s('Информация о заказанном вами хостинге доступна в разделе') . ' «<a href="' . Core::$config['http_home'] . '/hosting">' . s('Мой хостинг') . '</a>»</p>';
+                        $text .= '<p>' . s('Информация о заказанном вами хостинге доступна в разделе') . ' «<a href="' . Core::$config['http_home'] . '/hosting/' .  Core::$sql->get('id', DB . 'hosting', 'owner_id=' . Core::$sql->i(Core::$user->info['id']))[0]['id'] . '">' . s('Мой хостинг') . '</a>»</p>';
                         break;
 
                     case 9:
