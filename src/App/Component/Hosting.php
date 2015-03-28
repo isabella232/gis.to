@@ -28,8 +28,6 @@ class Hosting
         ), DB . 'hosting');
 
         $result = self::sendRequest('http://api-async.gis.to/api/call/nextgisweb/start', json_encode($obj), self::INSTANCE_CREATE_HTTP_TIMEOUT);
-        echo $result;
-        die();
         return $result;
     }
 
@@ -42,7 +40,7 @@ class Hosting
             $server_json = file_get_contents('http://api-async.gis.to/api/registry/projects/nextgisweb/instance/' . $data['instance_server_id'] .'/status');
             $server_data = json_decode($server_json);
             $data['status_data'] = $server_data;
-            $data['status_id'] = $server_data[0]->proxy->running;
+            $data['status_id'] = count($server_data) > 0 ? $server_data[0]->proxy->running : false;
 
             $data['status_stamp'] = Core::$time['current_time'];
 

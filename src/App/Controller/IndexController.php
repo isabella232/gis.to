@@ -161,6 +161,7 @@ class IndexController
 
         // Hosting
 
+        echo 123;
         if (isset($_REQUEST['result']['hosting'][0])) {
             $row = $_REQUEST['result']['hosting'][0];
             if ($row['selected'] == 'true') {
@@ -181,7 +182,7 @@ class IndexController
                     $row['password'],
                     Core::$user->info['id']
                 );
-
+                echo 12324;
                 $template_vars = array(
                     '{site_url}' => Core::$config['site']['url'],
                     '{site_title}' => Core::$config['site']['title'],
