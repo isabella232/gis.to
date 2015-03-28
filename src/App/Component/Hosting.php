@@ -9,7 +9,7 @@ class Hosting
     const INSTANCE_CREATE_HTTP_TIMEOUT = 2;
     const INSTANCE_STATUS_HTTP_TIMEOUT = 10;
 
-    const CACHE_STATUS_TIMEOUT = 300;
+    const CACHE_STATUS_TIMEOUT = 30;
 
     static public function create($instanceId, $password, $ownerId) {
         $json = file_get_contents('http://api-async.gis.to/api/registry/projects/nextgisweb/new');
@@ -19,7 +19,7 @@ class Hosting
         Core::$sql->insert(array(
             'owner_id' => Core::$sql->i($ownerId),
             'instance_id' => Core::$sql->s($instanceId),
-            'password' => Core::$sql->s($password),
+            'password' => Core::$sql->s($obj->param->Password),
             'insert_stamp' => Core::$sql->i(Core::$time['current_time']),
             'insert_user_id' => Core::$sql->i(Core::$user->info['id']),
             'update_stamp' => Core::$sql->i(Core::$time['current_time']),

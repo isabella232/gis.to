@@ -61,7 +61,7 @@ class HostingController
         $html .= '<table class="table">
                 <tr><td>' . s('Адрес') . '</td><td><a href="http://' . escape($item['instance_id']) . '.gis.to/">http://' . escape($item['instance_id']) . '.gis.to/</a></td></tr>
                 <tr><td>' . s('Пароль') . '</td><td>' . escape($item['password']) . '</td></tr>
-                <tr><td>' . s('Состояние') . '</td><td>' . escape($data['status_id'] ? s('Запущен') : s('Остановлен')) . '</td></tr>
+                <tr><td>' . s('Состояние') . '</td><td>' . escape($data['status_id'] ? s('Запущен') : s('Создается')) . '</td></tr>
                 <tr><td>' . s('Обновлен') . '</td><td>' . time_format_datetime($data['status_stamp']) . '</td></tr>
             </table>';
 
