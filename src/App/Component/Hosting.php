@@ -27,8 +27,10 @@ class Hosting
             'instance_server_id' => Core::$sql->s($obj->param->InstanceID)
         ), DB . 'hosting');
 
-
-        return self::sendRequest('http://api-async.gis.to/api/class/machineer/start', json_encode($obj), self::INSTANCE_CREATE_HTTP_TIMEOUT);
+        $result = self::sendRequest('http://api-async.gis.to/api/call/nextgisweb/start', json_encode($obj), self::INSTANCE_CREATE_HTTP_TIMEOUT);
+        echo $result;
+        die();
+        return $result;
     }
 
     static public function getStatus($instanceId) {
@@ -36,14 +38,11 @@ class Hosting
 
         if ((Core::$time['current_time'] - $data['status_stamp']) > self::CACHE_STATUS_TIMEOUT) {
 
-            echo 'http://api-async.gis.to/api/registry/projects/nextgisweb/instance/' . $data['instance_server_id'] .'/status';
-            $data['status_data'] = file_get_contents('http://api-async.gis.to/api/registry/projects/nextgisweb/instance/' . $data['instance_server_id'] .'/status');
-
-            $data['status_id'] = (
-                ($data['status_data']['LVM']['isRunning'] == 'True')
-                && ($data['status_data']['salt']['isRunning'] == 'True')
-                && ($data['status_data']['Mount']['isRunning'] == 'True')
-                && ($data['status_data']['LXC']['isRunning'] == 'True')) ? 1 : 0;
+            //echo 'http://api-async.gis.to/api/registry/projects/nextgisweb/instance/' . $data['instance_server_id'] .'/status';
+            $server_json = file_get_contents('http://api-async.gis.to/api/registry/projects/nextgisweb/instance/' . $data['instance_server_id'] .'/status');
+            $server_data = json_decode($server_json);
+            $data['status_data'] = $server_data;
+            $data['status_id'] = $server_data[0]->proxy->running;
 
             $data['status_stamp'] = Core::$time['current_time'];
 
