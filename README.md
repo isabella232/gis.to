@@ -11,7 +11,7 @@ General settings
 ----------------
 
 ```
-$ sudo apt-get install mysql-server libapache2-mod-php5 php5-mysql
+$ sudo apt-get install mysql-server libapache2-mod-php5 php5-mysql php5-curl
 $ cd /home/rykov
 $ git clone git@github.com:nextgis/gis.to.git
 $ cd gis.to
@@ -53,6 +53,14 @@ php_admin_value open_basedir /var/www/html/gis.to:/tmp
 
 </VirtualHost>
 ```
+
+PHP settings 
+------------
+
+**php.ini**
+
+extension=php_curl.dll
+
 
 App settings
 ------------

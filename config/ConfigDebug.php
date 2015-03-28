@@ -5,7 +5,7 @@ $config['database']['database']	= 'gisto';
 $config['database']['username'] = 'root';
 $config['database']['password'] = '123';
 
-$config['http_domain'] = 'gis.to';
+$config['http_domain'] = 'test.gis.to';
 $config['http_port'] = ':80';
 $config['http_path'] = '';
 $config['http_root'] = 'http://' . $config['http_domain'] . $config['http_port'] . $config['http_path'];
