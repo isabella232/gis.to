@@ -59,7 +59,7 @@ class HostingController
         $html .= '<h1 style="margin-bottom:40px">' . s('Хост') . ' "' . $item['instance_id'] . '"</h1>';
 
         $html .= '<table class="table">
-                <tr><td>' . s('Адрес') . '</td><td>' . escape($data['status_id'] ? s('<a href="http://' . escape($item['instance_id']) . '.gis.to/" target="_blank">http://' . escape($item['instance_id']) . '.gis.to/</a>') : s(escape($item['instance_id']) . '.gis.to')) . '</td></tr>
+                <tr><td>' . s('Адрес') . '</td><td>' . escape($data['status_id'] ? '<a href="http://' . escape($item['instance_id']) . '.gis.to/" target="_blank">http://' . escape($item['instance_id'] . '.gis.to/</a>') : s(escape($item['instance_id']) . '.gis.to')) . '</td></tr>
                 <tr><td>' . s('Логин') . '</td><td>' . 'administrator' . '</td></tr>
                 <tr><td>' . s('Пароль') . '</td><td>' . escape($item['password']) . '</td></tr>
                 <tr><td>' . s('Состояние') . '</td><td>' . escape($data['status_id'] ? s('Запущен') : s('Создается')) . '</td></tr>
