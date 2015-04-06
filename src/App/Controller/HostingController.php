@@ -59,12 +59,12 @@ class HostingController
         $html .= '<h1 style="margin-bottom:40px">' . s('Хост') . ' "' . $item['instance_id'] . '"</h1>';
 
         $html .= '<table class="table">
-                <tr><td>' . s('Адрес') . '</td><td><a href="http://' . escape($item['instance_id']) . '.gis.to/" target="_blank">http://' . escape($item['instance_id']) . '.gis.to/</a></td></tr>
+                <tr><td>' . s('Адрес') . '</td><td>' . escape($data['status_id'] ? s('<a href="http://' . escape($item['instance_id']) . '.gis.to/" target="_blank">http://' . escape($item['instance_id']) . '.gis.to/</a>') : s(escape($item['instance_id']) . '.gis.to')) . '</td></tr>
                 <tr><td>' . s('Пароль') . '</td><td>' . escape($item['password']) . '</td></tr>
                 <tr><td>' . s('Состояние') . '</td><td>' . escape($data['status_id'] ? s('Запущен') : s('Создается')) . '</td></tr>
-                <tr><td>' . s('Обновлен') . '</td><td>' . time_format_datetime($data['status_stamp']) . '</td></tr>
-            </table>';
+                <tr><td>' . s('Создан') . '</td><td>' . time_format_age($data['insert_stamp']).'</td></tr>
 
+            </table>';
         $html .= '</div>';
 
         return include(dirname(__FILE__) . '/../View/Common.php');

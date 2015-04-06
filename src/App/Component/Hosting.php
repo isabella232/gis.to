@@ -32,7 +32,7 @@ class Hosting
     }
 
     static public function getStatus($instanceId) {
-        $data = Core::$sql->row('status_id, status_data, status_stamp, instance_server_id', DB . 'hosting', 'instance_id=' . Core::$sql->s($instanceId));
+        $data = Core::$sql->row('status_id, status_data, status_stamp, instance_server_id, insert_stamp', DB . 'hosting', 'instance_id=' . Core::$sql->s($instanceId));
 
         if ((Core::$time['current_time'] - $data['status_stamp']) > self::CACHE_STATUS_TIMEOUT) {
 

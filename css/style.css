@@ -146,3 +146,12 @@ header .navbar {
     vertical-align: middle;
     width: 10%;
 }
+
+.btn.btn-default.btn-primary.tab-nav.summary {
+    font-size: 18px;
+    background: green;
+}
+
+.btn.btn-default.btn-primary.tab-nav.summary:hover {
+    background: darkgreen;
+}

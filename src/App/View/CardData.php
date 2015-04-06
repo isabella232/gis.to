@@ -52,9 +52,11 @@
 </div>
 
 <div class="page-nav">
-    <a type="submit" class="btn btn-default btn-primary tab-nav" data-tab="prev"><span class="glyphicon glyphicon-chevron-left"></span> Обратно</a>
-    <a type="submit" class="btn btn-default btn-primary tab-nav summary" data-tab="summary">Готово</a>
-    <a type="submit" class="btn btn-default btn-primary tab-nav" data-tab="next">Дальше <span class="glyphicon glyphicon-chevron-right"></span></a>
+    <a type="submit" class="btn btn-default btn-primary tab-nav summary" data-tab="summary" style="float:left;">Заказать</a>
+    <span  style="float:right;">
+        <a type="submit" class="btn btn-default btn-primary tab-nav" data-tab="prev"><span class="glyphicon glyphicon-chevron-left"></span> Главная</a>
+        <a type="submit" class="btn btn-default btn-primary tab-nav" data-tab="next">Веб <span class="glyphicon glyphicon-chevron-right"></span></a>
+    </span>
 </div>
 
 </div>
