@@ -180,12 +180,11 @@
     </table>
 </div>
 
-    <div class="page-nav">
-        <a type="submit" class="btn btn-default btn-primary tab-nav summary" data-tab="summary" style="float:left;">Получить</a>
-    <span  style="float:right;">
-        <a type="submit" class="btn btn-default btn-primary tab-nav" data-tab="prev"><span class="glyphicon glyphicon-chevron-left"></span> Поддержка</a>
-    </span>
-    </div>
+<div class="page-nav">
+    <button id="send-order" class="btn btn-default btn-primary" style="float:left;">Получить</button>
+    <a type="submit" class="btn btn-default btn-primary tab-nav" data-tab="prev"><span class="glyphicon glyphicon-chevron-left"></span> Поддержка</a>
+</div>
+
 
 </div>
 

@@ -147,11 +147,13 @@ header .navbar {
     width: 10%;
 }
 
-.btn.btn-default.btn-primary.tab-nav.summary {
+.btn.btn-default.btn-primary.tab-nav.summary,
+#send-order{
     font-size: 18px;
     background: green;
 }
 
-.btn.btn-default.btn-primary.tab-nav.summary:hover {
+.btn.btn-default.btn-primary.tab-nav.summary:hover,
+#send-order:hover {
     background: darkgreen;
 }
